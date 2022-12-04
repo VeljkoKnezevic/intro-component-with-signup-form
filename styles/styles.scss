@@ -1,0 +1,184 @@
+$body-bg: hsl(0, 100%, 74%);
+$button: hsl(154, 59%, 51%);
+$pricing: hsl(248, 32%, 49%);
+$form-text: hsl(249, 10%, 26%);
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-image: url(../images/bg-intro-mobile.png);
+  background-color: $body-bg;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.description {
+  text-align: center;
+  margin: 88px auto 0;
+  color: #FFF;
+
+  &__header {
+    font-weight: 700;
+    font-size: 1.75rem;
+    line-height: 1.29;
+    letter-spacing: -0.291667px;       
+  }
+
+  &__para {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.62;
+  }
+}
+
+
+.pricing {
+  background: $pricing;
+  box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.14688);
+  border-radius: 10px;
+  margin-top: 64px;
+
+  &__text {
+    font-weight: 500;
+    font-size: 0.938rem;
+    line-height: 1.73;
+    text-align: center;
+    letter-spacing: 0.267857px;
+    color: #FFF;
+    padding: 18px;
+    width: 70%;
+    margin: 0 auto;
+
+    &--bold {
+      font-weight: 700;
+    }
+  }
+}
+
+.main {
+  margin-top: 24px;
+  margin-bottom: 68px;
+  background-color: #FFF;
+  box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.14688);
+  border-radius: 10px;
+  overflow: auto;
+
+  &__container {
+    margin: 24px auto;
+    width: 90%;
+  }
+
+  .form {
+    display: grid;
+    gap: 20px;
+
+    &__input {
+      background: #FFFFFF;
+      border: 1px solid #DEDEDE;
+      border-radius: 5px;
+      padding: 0.938rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1.86;
+      letter-spacing: 0.25px;
+      color: $form-text;
+      mix-blend-mode: normal;
+      opacity: 0.75;
+    }
+
+    &__button {
+      cursor: pointer;
+      background: $button;
+      box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.0908818);
+      border-radius: 5px; 
+      border: none;
+      padding: 15px;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.938rem;
+      line-height: 1.73;
+      text-align: center;
+      letter-spacing: 1px;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+  }
+  
+
+  .footer {
+    width: 80%;
+    margin: 8px auto 24px;
+
+    &__text {
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 21px;
+      text-align: center;
+      color: #BAB7D4;
+
+      &--link {
+        color: $body-bg;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 75rem) {
+  body {
+    max-width: 1800px;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url(../images/bg-intro-desktop.png);
+
+    .flex-1 {
+      flex: 1;
+      margin-left: 8rem;
+    }
+
+    .flex-2 {
+      flex: 1;
+      margin-right: 8rem;
+    }
+  }
+
+  .description {
+    text-align: left;
+
+    &__header {
+      font-size: 3.125rem;
+      line-height: 1.1;
+      letter-spacing: -0.520833px;
+    }
+
+    &__para {
+      font-size: 1rem;
+      line-height: 1.625;
+    }
+  }
+
+  .form {
+    
+    &__button {
+      &:hover {
+        background: #77E2B3;
+      }
+    }
+  }
+}
