@@ -1,41 +1,51 @@
-const form = document.querySelector(".form")
-const inputs = document.querySelectorAll(".form__input");
-const firstName = document.querySelector(".first-name");
-const lastName = document.querySelector(".last-name");
-const email = document.querySelector(".email");
-const password = document.querySelector(".password");
-const button = document.querySelector(".form__button");
+//Turns to true if all fileds aren't empty
+let noErrors = false;
 
-button.addEventListener("click", (e) => {
-  inputs.forEach(input => {
+const checkIfEmpty = (element) => {
+  const errorMsg = element.nextElementSibling;
 
-    if(input.placeholder === "Email Address" && input.value === "") {
-      let element = document.createElement("div")
-      element.textContent = "Looks like this is not an email";
-      element.classList.add("error")
-      input.after(element);    
-      
-      input.placeholder = "email@example/com";
-      input.style.color = "#FF7979"
-      input.style.borderColor = "#FF7979"
-      input.style.backgroundImage = "url(./images/icon-error.svg)"
-      input.style.backgroundRepeat = "no-repeat"
-      input.style.backgroundPosition = "95% 50%"      
+  //Handle error styling if it isn't an email
+  if (element.value === "" && element.type !== "email") {
+    element.style.borderColor = "#FF7979";
+    element.classList.add("add-img");
+    errorMsg.style.display = "block";
+    errorMsg.textContent = `${element.placeholder} cannot be empty`;
+    element.placeholder = "";
+    noErrors = false;
+    //If it is email
+  } else if (element.value === "" && element.type === "email") {
+    element.style.borderColor = "#FF7979";
+    element.classList.add("add-img");
+    errorMsg.style.display = "block";
+    errorMsg.textContent = `Looks like this is not an email`;
+    element.placeholder = "email@example/com";
+    noErrors = false;
+  } else {
+    noErrors = true;
+  }
+};
 
-    } else if(input.value === "") {
-        //Adds a div with error text
-        let element = document.createElement("div")
-        element.textContent = `${input.placeholder} cannot be empty`;
-        element.classList.add("error")
-        input.after(element);
-  
-        //Additional styling
-        input.placeholder = "";
-        input.style.borderColor = "#FF7979"
-        input.style.backgroundImage = "url(./images/icon-error.svg)"
-        input.style.backgroundRepeat = "no-repeat"
-        input.style.backgroundPosition = "95% 50%"      
-       }
-  })
+const handleErrors = (firstName, lastName, email, password) => {
+  checkIfEmpty(firstName);
+  checkIfEmpty(lastName);
+  checkIfEmpty(email);
+  checkIfEmpty(password);
+};
 
-})
+const handleFormSubmit = (() => {
+  const form = document.querySelector(".form");
+  const firstName = form.children[0];
+  const lastName = form.children[2];
+  const email = form.children[4];
+  const password = form.children[6];
+
+  form.addEventListener("submit", (e) => {
+    handleErrors(firstName, lastName, email, password);
+
+    if (!noErrors) {
+      e.preventDefault();
+    } else {
+      alert("Successfully logged in!");
+    }
+  });
+})();
